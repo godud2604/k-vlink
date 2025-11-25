@@ -90,25 +90,13 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
   return (
     <div className="flex min-h-screen justify-center bg-[#fff6f9] px-4 text-[#2d1e21]">
       <main className="w-full max-w-[520px] py-6">
-        <header className="flex items-center justify-between rounded-b-2xl bg-white/90 px-2 py-3 shadow-sm shadow-[#e3c9d5]/60">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full text-[#2d1e21] hover:bg-[#fff6f9]">
-            <span className="sr-only">Open menu</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-              <path d="M4 7h16v2H4zm0 4h16v2H4zm0 4h16v2H4z" />
-            </svg>
-          </button>
+        <header className="flex items-center justify-center rounded-b-2xl bg-white/90 px-2 py-3 shadow-sm shadow-[#e3c9d5]/60">
           <div className="flex items-center gap-2 text-lg font-semibold uppercase tracking-[0.18em]">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10Z" />
             </svg>
             <span>{content.headerLabel}</span>
           </div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full text-[#2d1e21] hover:bg-[#fff6f9]">
-            <span className="sr-only">Share</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-              <path d="M18 16a3 3 0 0 0-2.39 1.19l-6-3A3 3 0 0 0 9.5 12a3 3 0 0 0-.89-2.19l6-3A3 3 0 1 0 14 5.5v.08l-6 3a3 3 0 1 0 0 6l6 3a3 3 0 1 0 1-1.18Z" />
-            </svg>
-          </button>
         </header>
 
         <section className="mt-8 flex flex-col gap-4">
