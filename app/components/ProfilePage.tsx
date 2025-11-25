@@ -13,6 +13,8 @@ type Post = {
   title: string;
   detail?: string;
   size?: string;
+  poster?: string;
+  mediaType?: "image" | "video";
 };
 
 export type ProfileContent = {
@@ -26,7 +28,7 @@ export type ProfileContent = {
   highlights: string[];
   tags: string[];
   posts: Post[];
-  picks: string[];
+  postsHint?: string;
   heroImage: {
     src: string;
     alt: string;
@@ -92,6 +94,8 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
   const socialLinks = content.socialLinks;
   const socials = content.socials ?? defaultSocials;
   const footerLabel = content.footerLabel ?? content.headerLabel;
+  const postsHint =
+    content.postsHint ?? "영상 클릭하면 해당 제품을 더 자세히 볼 수 있어요.";
 
   return (
     <div className="flex min-h-screen justify-center bg-[#fff6f9] px-4 text-[#2d1e21]">
@@ -214,53 +218,54 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
         </section>
 
         <section className="mt-10">
-          <div className="flex items-center gap-2 text-[#2c1a1d]">
-            <div className="h-5 w-1 rounded-full bg-[#a56a7b]" />
-            <h2 className="text-xl font-semibold">Posts</h2>
+          <div className="flex items-start justify-between gap-3 text-[#2c1a1d]">
+            <div className="flex items-center gap-2">
+              <div className="h-5 w-1 rounded-full bg-[#a56a7b]" />
+              <h2 className="text-xl font-semibold">Posts</h2>
+            </div>
+            <p className="text-right text-xs font-semibold leading-5 text-[#5a424a] whitespace-nowrap">
+              {postsHint}
+            </p>
           </div>
-          <div className="mt-4 grid auto-rows-[120px] grid-cols-3 gap-2">
+          <div className="mt-4 grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-2">
             {content.posts.map((post) => (
               <div
-                key={post.src}
-                className={`relative overflow-hidden rounded-2xl bg-white shadow-sm shadow-[#e3c9d5] ${post.size ?? ""}`}
+                key={`${post.title}-${post.src}`}
+                className={`relative overflow-hidden rounded-2xl bg-white shadow-sm shadow-[#e3c9d5] aspect-[9/16] ${post.size ?? ""}`}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+                {post.mediaType === "video" || post.src.endsWith(".mp4") ? (
+                  <a
+                    href={post.poster ?? post.src}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="absolute inset-0"
+                    aria-label={`${post.title} product detail`}
+                  >
+                    <video
+                      src={post.src}
+                      poster={post.poster}
+                      muted
+                      loop
+                      autoPlay
+                      playsInline
+                      className="h-full w-full object-cover"
+                    />
+                  </a>
+                ) : (
+                  <Image
+                    src={post.src}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 33vw, 200px"
+                    className="absolute inset-0 object-cover"
+                  />
+                )}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
                 <Bookmark />
-                <Image
-                  src={post.src}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 33vw, 200px"
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-3 bottom-3 text-white">
+                <div className="absolute inset-x-3 bottom-3 z-[2] text-white">
                   <p className="text-xs uppercase tracking-wide">{post.title}</p>
                   {post.detail && <p className="text-[11px] text-white/90">{post.detail}</p>}
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-10">
-          <div className="flex items-center gap-2 text-[#2c1a1d]">
-            <div className="h-5 w-1 rounded-full bg-[#a56a7b]" />
-            <h2 className="text-xl font-semibold">My Picks</h2>
-          </div>
-          <div className="mt-4 grid auto-rows-[110px] grid-cols-3 gap-2">
-            {content.picks.map((src, index) => (
-              <div
-                key={`${src}-${index}`}
-                className="relative overflow-hidden rounded-2xl bg-white shadow-sm shadow-[#e3c9d5]"
-              >
-                <Bookmark />
-                <Image
-                  src={src}
-                  alt="Curated item"
-                  fill
-                  sizes="(max-width: 768px) 33vw, 180px"
-                  className="object-cover"
-                />
               </div>
             ))}
           </div>
