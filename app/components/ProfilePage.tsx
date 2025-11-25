@@ -40,16 +40,6 @@ export type ProfileContent = {
 
 const defaultSocials: SocialType[] = ["youtube", "instagram"];
 
-function Bookmark() {
-  return (
-    <span className="absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-lg bg-white/90 text-[#7f5a64] shadow-sm">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M6 4.5C6 3.119 7.119 2 8.5 2h7A2.5 2.5 0 0 1 18 4.5v15.237a.5.5 0 0 1-.777.416L12 16.5l-5.223 3.653A.5.5 0 0 1 6 19.737z" />
-      </svg>
-    </span>
-  );
-}
-
 function SocialIcon({ type }: { type: SocialType }) {
   if (type === "naver") {
     return (
@@ -261,7 +251,6 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
                   />
                 )}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
-                <Bookmark />
                 <div className="absolute inset-x-3 bottom-3 z-[2] text-white">
                   <p className="text-xs uppercase tracking-wide">{post.title}</p>
                   {post.detail && <p className="text-[11px] text-white/90">{post.detail}</p>}
