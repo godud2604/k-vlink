@@ -46,7 +46,7 @@ const japaneseContent: ProfileContent = {
 };
 
 export const metadata: Metadata = {
-  title: "ミンのKビューティーROOM | 日本語",
+  title: "ミンのKビューティーROOM",
   description: "毎日使えるリアルな韓国コスメだけを届ける、ミンのKビューティーROOM 日本語ページ。",
 };
 

@@ -40,7 +40,7 @@ const koreanContent: ProfileContent = {
 };
 
 export const metadata: Metadata = {
-  title: "BeautyPicked | 한국어",
+  title: "BeautyPicked",
   description: "실사용 기준으로 솔직하게 리뷰하는 K-뷰티 픽, BeautyPicked 한국어 페이지.",
 };
 
