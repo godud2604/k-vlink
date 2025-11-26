@@ -33,6 +33,13 @@ const japaneseContent: ProfileContent = {
       title: "フェイスラインがすっきり見えるクリームでした",
       size: "col-span-2 row-span-2",
     },
+    {
+      src: "/video/티암_ja.mp4",
+      poster: "https://tiamglobal.com/products/tiam-pdrn-collagen-glow-up-serum-30ml?srsltid=AfmBOoq5bch0BcfehsFF2jTNtHMADfS8i8zVYDC54_0EoRBPnKMUrRoJ&utm_source=chatgpt.com",
+      mediaType: "video",
+      title: "「ゆるんだハリが一瞬でよみがえる美容液」",
+      size: "col-span-2 row-span-2",
+    },
   ],
   heroImage: {
     src: "/profile.jpg",

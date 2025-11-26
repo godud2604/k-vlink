@@ -27,6 +27,13 @@ const koreanContent: ProfileContent = {
       title: "입가·턱선 고민이면 이거부터 써보세요",
       size: "col-span-2 row-span-2",
     },
+    {
+      src: "/video/티암_kr.mp4",
+      poster: "https://smartstore.naver.com/tiam_kr/products/12428883926",
+      mediaType: "video",
+      title: "요즘 피부 탄력 떨어졌다면 이 영상 꼭 보세요",
+      size: "col-span-2 row-span-2",
+    },
   ],
   heroImage: {
     src: "/profile.jpg",
