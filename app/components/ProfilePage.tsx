@@ -280,7 +280,7 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
                       loop
                       autoPlay
                       playsInline
-                      className="h-full w-full object-cover"
+                      className="h-full w-full cursor-pointer object-cover"
                     />
                   </a>
                 ) : (

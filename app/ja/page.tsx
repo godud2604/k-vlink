@@ -43,6 +43,13 @@ const japaneseContent: ProfileContent = {
       title: "30代、第一印象は「唇」で決まる。",
       size: "col-span-2 row-span-2",
     },
+    {
+      src: "/video/노세밤_ja.mp4",
+      poster: "https://amzn.to/48mkxH5",
+      mediaType: "video",
+      title: "30代、第一印象は「唇」で決まる。",
+      size: "col-span-2 row-span-2",
+    },
   ],
   heroImage: {
     src: "/profile-ja.png",
