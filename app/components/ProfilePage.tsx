@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
 type SocialType = "naver" | "thread" | "youtube" | "instagram";
 
@@ -15,6 +16,22 @@ type Post = {
   size?: string;
   poster?: string;
   mediaType?: "image" | "video";
+};
+
+type ProfileTheme = {
+  background?: string;
+  surface?: string;
+  card?: string;
+  textStrong?: string;
+  textMuted?: string;
+  textSoft?: string;
+  accent?: string;
+  tagBg?: string;
+  tagText?: string;
+  shadow?: string;
+  ring?: string;
+  line?: string;
+  overlay?: string;
 };
 
 export type ProfileContent = {
@@ -36,6 +53,7 @@ export type ProfileContent = {
   socialLinks?: SocialLink[];
   socials?: SocialType[];
   footerLabel?: string;
+  theme?: ProfileTheme;
 };
 
 const defaultSocials: SocialType[] = ["youtube", "instagram"];
@@ -86,22 +104,56 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
   const footerLabel = content.footerLabel ?? content.headerLabel;
   const postsHint =
     content.postsHint ?? "영상 클릭하면 해당 제품을 더 자세히 볼 수 있어요.";
+  const theme = {
+    background: content.theme?.background ?? "#fff6f9",
+    surface: content.theme?.surface ?? "rgba(255,255,255,0.9)",
+    card: content.theme?.card ?? "#ffffff",
+    textStrong: content.theme?.textStrong ?? "#2d1e21",
+    textMuted: content.theme?.textMuted ?? "#5a424a",
+    textSoft: content.theme?.textSoft ?? "#3f3033",
+    accent: content.theme?.accent ?? "#a56a7b",
+    tagBg: content.theme?.tagBg ?? "rgba(255,255,255,0.9)",
+    tagText: content.theme?.tagText ?? "#5a424a",
+    shadow: content.theme?.shadow ?? "rgba(227,201,213,0.55)",
+    ring: content.theme?.ring ?? "#ffffff",
+    line: content.theme?.line ?? "#a56a7b",
+    overlay:
+      content.theme?.overlay ??
+      "linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.1), transparent)",
+  };
+  const themeVars: CSSProperties = {
+    ["--page-bg" as string]: theme.background,
+    ["--surface-bg" as string]: theme.surface,
+    ["--card-bg" as string]: theme.card,
+    ["--text-strong" as string]: theme.textStrong,
+    ["--text-muted" as string]: theme.textMuted,
+    ["--text-soft" as string]: theme.textSoft,
+    ["--accent" as string]: theme.accent,
+    ["--tag-bg" as string]: theme.tagBg,
+    ["--tag-text" as string]: theme.tagText,
+    ["--shadow-color" as string]: theme.shadow,
+    ["--ring-color" as string]: theme.ring,
+    ["--line-color" as string]: theme.line,
+  };
 
   return (
-    <div className="flex min-h-screen justify-center bg-[#fff6f9] px-4 text-[#2d1e21]">
+    <div
+      className="flex min-h-screen justify-center px-4"
+      style={{ ...themeVars, background: theme.background, color: theme.textStrong }}
+    >
       <main className="w-full max-w-[520px] py-6">
-        <header className="flex items-center justify-center rounded-b-2xl bg-white/90 px-2 py-3 shadow-sm shadow-[#e3c9d5]/60">
+        <header
+          className="flex items-center justify-center rounded-b-2xl px-2 py-3 backdrop-blur"
+          style={{ background: "var(--surface-bg)", boxShadow: "0 14px 38px var(--shadow-color)" }}
+        >
           <div className="flex items-center gap-2 text-lg font-semibold uppercase tracking-[0.18em]">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10Z" />
-            </svg>
             <span>{content.headerLabel}</span>
           </div>
         </header>
 
         <section className="mt-8 flex flex-col gap-4">
           <div className="flex items-center gap-4">
-            <div className="relative h-28 w-28 overflow-hidden rounded-full ring-4 ring-white shadow-lg shadow-[#d9b9c5]/50">
+            <div className="relative h-28 w-28 overflow-hidden rounded-full ring-4 ring-[var(--ring-color)] shadow-[0_16px_40px_var(--shadow-color)]">
               <Image
                 src={content.heroImage.src}
                 alt={content.heroImage.alt}
@@ -112,22 +164,22 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
               />
             </div>
             <div className="flex flex-col gap-1 text-left">
-              <h1 className="text-3xl font-bold tracking-tight text-[#2c1a1d]">{content.profileName}</h1>
-              <p className="text-sm font-semibold text-[#5a424a]">{content.tagline}</p>
+              <h1 className="text-3xl font-bold tracking-tight text-[var(--text-strong)]">{content.profileName}</h1>
+              <p className="text-sm font-semibold text-[var(--text-muted)]">{content.tagline}</p>
             </div>
           </div>
 
           {content.introLead ? (
-            <p className="mt-1 text-[15px] font-bold leading-[1.6] text-[#2f2427]">
+            <p className="mt-1 text-[15px] font-bold leading-[1.6] text-[var(--text-strong)]">
               {content.introLead}
             </p>
           ) : null}
 
           {content.introList?.length ? (
-            <ul className="mt-1 space-y-1 text-[15px] font-semibold leading-[1.55] text-[#2f2427]">
+            <ul className="mt-1 space-y-1 text-[15px] font-semibold leading-[1.55] text-[var(--text-strong)]">
               {content.introList.map((item) => (
                 <li key={item} className="flex items-center gap-3">
-                  <span className="inline-block h-2 w-2 self-center rounded-sm bg-[#c590a3]" aria-hidden />
+                  <span className="inline-block h-2 w-2 self-center rounded-sm bg-[var(--accent)]" aria-hidden />
                   <span>{item}</span>
                 </li>
               ))}
@@ -135,7 +187,7 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
           ) : null}
 
           {content.introParagraphs?.length ? (
-            <div className="mt-1 space-y-1 text-[14px] font-semibold leading-[1.55] text-[#3f3033]">
+            <div className="mt-1 space-y-1 text-[14px] font-semibold leading-[1.55] text-[var(--text-soft)]">
               {content.introParagraphs.map((text) => (
                 <p key={text}>{text}</p>
               ))}
@@ -143,27 +195,28 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
           ) : null}
 
           {content.introFooter?.length ? (
-            <div className="mt-2 space-y-1 text-[15px] font-bold leading-[1.55] text-[#2f2427]">
+            <div className="mt-2 space-y-1 text-[15px] font-bold leading-[1.55] text-[var(--text-strong)]">
               {content.introFooter.map((text) => (
                 <p key={text}>{text}</p>
               ))}
             </div>
           ) : null}
 
-          <ul className="mt-1 space-y-1 text-[14px] font-semibold leading-[1.5] text-[#2f2427]">
+          <ul className="mt-1 space-y-1 text-[14px] font-semibold leading-[1.5] text-[var(--text-strong)]">
             {content.highlights.map((item) => (
               <li key={item} className="flex items-center gap-3">
-                <span className="inline-block h-2 w-2 self-center rounded-sm bg-[#c590a3]" aria-hidden />
+                <span className="inline-block h-2 w-2 self-center rounded-sm bg-[var(--accent)]" aria-hidden />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-4 flex flex-wrap justify-start gap-2 text-[13px] font-semibold text-[#5a424a]">
+          <div className="mt-4 flex flex-wrap justify-start gap-2 text-[13px] font-semibold text-[var(--tag-text)]">
             {content.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-white/90 px-3 py-1 shadow-sm shadow-[#e3c9d5] backdrop-blur"
+                className="rounded-full px-3 py-1 backdrop-blur shadow-[0_12px_28px_var(--shadow-color)]"
+                style={{ background: "var(--tag-bg)" }}
               >
                 {tag}
               </span>
@@ -172,36 +225,33 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
 
           <div className="mt-4 flex items-center gap-3">
             {socialLinks
-              ? socialLinks.map((item) => (
+              && socialLinks.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#1c1c1c] shadow-lg shadow-[#d9b9c5]/50 transition hover:-translate-y-0.5 hover:shadow-md"
+                    className="flex h-12 w-12 items-center justify-center rounded-full text-[var(--text-strong)] transition hover:-translate-y-0.5"
+                    style={{
+                      background: "var(--card-bg)",
+                      boxShadow: "0 16px 40px var(--shadow-color)",
+                    }}
                     aria-label={item.type}
                   >
                     <SocialIcon type={item.type} />
                   </Link>
                 ))
-              : socials.map((type) => (
-                  <button
-                    key={type}
-                    className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#1c1c1c] shadow-lg shadow-[#d9b9c5]/50"
-                  >
-                    <SocialIcon type={type} />
-                  </button>
-                ))}
+              }
           </div>
         </section>
 
         <section className="mt-10">
-          <div className="flex items-start justify-between gap-3 text-[#2c1a1d]">
+          <div className="flex items-start justify-between gap-3 text-[var(--text-strong)]">
             <div className="flex items-center gap-2">
-              <div className="h-5 w-1 rounded-full bg-[#a56a7b]" />
+              <div className="h-5 w-1 rounded-full bg-[var(--line-color)]" />
               <h2 className="text-xl font-semibold">Posts</h2>
             </div>
-            <p className="text-right text-xs font-semibold leading-5 text-[#5a424a] whitespace-nowrap">
+            <p className="text-right text-xs font-semibold leading-5 text-[var(--text-muted)] whitespace-nowrap">
               {postsHint}
             </p>
           </div>
@@ -209,7 +259,11 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
             {content.posts.map((post) => (
               <div
                 key={`${post.title}-${post.src}`}
-                className={`relative overflow-hidden rounded-2xl bg-white shadow-sm shadow-[#e3c9d5] aspect-[9/16] ${post.size ?? ""}`}
+                className={`relative aspect-[9/16] overflow-hidden rounded-2xl ${post.size ?? ""}`}
+                style={{
+                  background: "var(--card-bg)",
+                  boxShadow: "0 12px 32px var(--shadow-color)",
+                }}
               >
                 {post.mediaType === "video" || post.src.endsWith(".mp4") ? (
                   <a
@@ -238,7 +292,10 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
                     className="absolute inset-0 object-cover"
                   />
                 )}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{ background: theme.overlay }}
+                />
                 <div className="absolute inset-x-3 bottom-3 z-[2] text-white">
                   <p className="text-xs uppercase tracking-wide">{post.title}</p>
                   {post.detail && <p className="text-[11px] text-white/90">{post.detail}</p>}
@@ -248,16 +305,13 @@ export function ProfilePage({ content }: { content: ProfileContent }) {
           </div>
         </section>
 
-        <footer className="mt-12 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.2em] text-[#8a7180]">
-          <span className="h-px w-8 bg-[#d6b8c5]" aria-hidden />
+        <footer className="mt-12 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          <span className="h-px w-8 bg-[var(--line-color)]" aria-hidden />
           Created by
-          <div className="flex items-center gap-1 font-semibold text-[#2d1e21]">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10Z" />
-            </svg>
+          <div className="flex items-center gap-1 font-semibold text-[var(--text-strong)]">
             <span>{footerLabel}</span>
           </div>
-          <span className="h-px w-8 bg-[#d6b8c5]" aria-hidden />
+          <span className="h-px w-8 bg-[var(--line-color)]" aria-hidden />
         </footer>
       </main>
     </div>

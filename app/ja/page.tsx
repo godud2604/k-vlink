@@ -4,57 +4,71 @@ import { ProfilePage, type ProfileContent } from "../components/ProfilePage";
 const videoSrc = "/video/info_card_shorts.mp4";
 
 const japaneseContent: ProfileContent = {
-  headerLabel: "ミンのROOM",
-  profileName: "ミンのKビューティーROOM",
-  tagline: "毎日使えるリアルな韓国コスメをやさしく紹介",
+  headerLabel: "清潔マン30秒",
+  profileName: "清潔マン30秒",
+  tagline: "30秒で清潔感アップ。ビジネスマン向け即効ケア",
   postsHint: "動画をタップすると商品の詳細が見られます。",
   introFooter: [
     "——.+",
-    "166cm / 1996 / プロダクトエンジニア",
-    "→ ビューティーブロガー（2年目）",
+    "1988 / サラリーマン",
+    "→ メンズ向け清潔ケア研究家",
   ],
   introParagraphs: [
-    "実際に使って「本当に良かった」と思えた韓国コスメだけを、やさしく分かりやすく紹介するチャンネルです。",
-    "派手な誇張よりも、毎日使えるリアルさを大切に。Kビューティーの魅力を、丁寧にお届けします。",
+    "実際に使って「本当に効果を感じた」アイテムだけを、短く・分かりやすく紹介するチャンネルです。",
+    "派手な演出よりも、仕事場で通用する“清潔感”を最優先。Amazonでそのまま買える即効アイテムを厳選し、実用的なソリューションをお届けします。",
   ],
   highlights: [
-    "実際に使って良かったものだけ紹介",
-    "毎日使えるリアルな使用感を重視",
-    "初心者でも選びやすい丁寧な説明",
-    "敏感肌でも使いやすいアイテム中心",
-    "動画で紹介した商品の情報をまとめて掲載",
+    "30秒で見た目が変わる即効ケアだけ紹介",
+    "テカリ・毛穴・乾燥などメンズの悩みに特化",
+    "難しい美容知識ゼロでも分かる説明",
+    "職場で使いやすいアイテム中心",
+    "動画で紹介した商品のリンクをまとめて掲載",
   ],
-  tags: ["韓国コスメ", "スキンケア", "メイクアップ", "ベースメイク", "トーンアップ", "レビュー"],
+  tags: [
+    "清潔感",
+    "身だしなみ",
+    "メンズケア",
+    "ビジネスマン",
+    "30秒ケア",
+    "Amazonおすすめ",
+    "大人男子",
+    "テカリ対策",
+    "毛穴ケア",
+  ],
   posts: [
     {
-      src: videoSrc,
-      poster: "https://amzn.to/4ocfU8s",
+      src: "/video/labello_ja.mp4",
+      poster: "https://amzn.to/48lKaIh",
       mediaType: "video",
-      title: "フェイスラインがすっきり見えるクリームでした",
-      size: "col-span-2 row-span-2",
-    },
-    {
-      src: "/video/티암_ja.mp4",
-      poster: "https://tiamglobal.com/products/tiam-pdrn-collagen-glow-up-serum-30ml?srsltid=AfmBOoq5bch0BcfehsFF2jTNtHMADfS8i8zVYDC54_0EoRBPnKMUrRoJ&utm_source=chatgpt.com",
-      mediaType: "video",
-      title: "「ゆるんだハリが一瞬でよみがえる美容液」",
+      title: "30代、第一印象は「唇」で決まる。",
       size: "col-span-2 row-span-2",
     },
   ],
   heroImage: {
-    src: "/profile.jpg",
-    alt: "ミンのKビューティーROOMのプロフィール写真",
+    src: "/profile-ja.png",
+    alt: "清潔マン30秒のプロフィール写真",
   },
-  socialLinks: [
-    { type: "naver", href: "https://m.blog.naver.com/ees238?tab=1" },
-    { type: "thread", href: "https://www.threads.com/@nomad._hy" },
-    { type: "youtube", href: "https://www.youtube.com/@ミンのKビューティーROOM" },
-  ],
+  theme: {
+    background:
+      "radial-gradient(circle at 18% 22%, rgba(76,188,255,0.18), transparent 32%), radial-gradient(circle at 82% 8%, rgba(45,255,214,0.12), transparent 30%), linear-gradient(135deg, #0c1f33 0%, #123957 50%, #0f4856 100%)",
+    surface: "rgba(15,36,54,0.82)",
+    card: "rgba(10,28,43,0.86)",
+    textStrong: "#e8f3fb",
+    textMuted: "#a8c8df",
+    textSoft: "#c4d8e8",
+    accent: "#4cc7ff",
+    tagBg: "rgba(255,255,255,0.08)",
+    tagText: "#b5d1e5",
+    shadow: "rgba(6,14,24,0.6)",
+    ring: "#38f2d5",
+    line: "#4cb5ff",
+    overlay: "linear-gradient(to top, rgba(6,14,24,0.58), rgba(6,14,24,0.2), transparent)",
+  },
 };
 
 export const metadata: Metadata = {
-  title: "ミンのKビューティーROOM",
-  description: "毎日使えるリアルな韓国コスメだけを届ける、ミンのKビューティーROOM 日本語ページ。",
+  title: "清潔マン30秒",
+  description: "30秒で清潔感アップ。ビジネスマン向け即効ケアを紹介するページ。",
 };
 
 export default function JapanesePage() {
