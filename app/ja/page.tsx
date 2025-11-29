@@ -37,6 +37,13 @@ const japaneseContent: ProfileContent = {
   ],
   posts: [
     {
+      src: "/video/니들샷_ja.mp4",
+      poster: "https://amzn.to/4onC3ke",
+      mediaType: "video",
+      title: "男の毛穴革命。チクチクするのに売れてる理由。VTリードルショット",
+      size: "col-span-2 row-span-2",
+    },
+    {
       src: "/video/labello_ja.mp4",
       poster: "https://amzn.to/48lKaIh",
       mediaType: "video",
@@ -49,7 +56,7 @@ const japaneseContent: ProfileContent = {
       mediaType: "video",
       title: "30代、第一印象は「唇」で決まる。",
       size: "col-span-2 row-span-2",
-    },
+    }
   ],
   heroImage: {
     src: "/profile-ja.png",
